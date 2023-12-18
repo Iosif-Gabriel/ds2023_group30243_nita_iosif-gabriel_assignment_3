@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  spring-app:
+    build:
+      context: .  # Directorul în care se află Dockerfile-ul aplicației Spring Boot
+    ports:
+      - "8020:8020"
+    networks:
+      device_demo_net:
+        ipv4_address: 172.19.0.12
+
+
+networks:
+  device_demo_net:
+    external: true

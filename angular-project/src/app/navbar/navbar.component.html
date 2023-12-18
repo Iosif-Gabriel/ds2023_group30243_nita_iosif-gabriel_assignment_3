@@ -1,0 +1,10 @@
+<nav>
+  <ul>
+    <li *ngIf="isAdmin"><a routerLink="/admin-page">Home</a></li>
+    <li *ngIf="isAdmin"><a [routerLink]="['/admin-page/users']">Users</a></li>
+    <li *ngIf="isAdmin"><a [routerLink]="['/admin-page/devices']">Devices</a></li>
+    <li *ngIf="isAdmin"><a [routerLink]="['/admin-page/admin-chat']">Chat</a></li>
+    <li *ngIf="!isAdmin"><a routerLink="/user-page">Devices</a></li>
+    <li *ngIf="!isAdmin"><a [routerLink]="['/user-page/user-chat']">Chat</a></li>
+  </ul>
+</nav>

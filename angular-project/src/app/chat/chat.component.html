@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+<div class="chat-container">
+    <div class="user-list">
+        <h2>Connected Users</h2>
+        <ul>
+            <li *ngFor="let user of connectedUsersArray">
+                <div class="user-item" (click)="openChat(user)">{{ user }}</div>
+            </li>
+        </ul>
+    </div>
+    <div class="chat-content">
+        <div class="chat-title">
+            <h3>Chat with {{ selectedUser }}</h3>
+        </div>
+        <div class="chat-messages" *ngIf="selectedUser">
+            <ng-container *ngIf="userMessages[selectedUser] && userMessages[selectedUser].length > 0">
+                <div *ngFor="let message of userMessages[selectedUser].slice().reverse()" class="message" [ngClass]="{'sent': message.sender === userId, 'received': message.sender !== userId}">
+                    {{ message.content }}
+                </div>
+            </ng-container>
+        </div>
+        <div class="chat-input" *ngIf="selectedUser">
+            <input [(ngModel)]="messageInput" (ngModelChange)="onMessageChange()" (focus)="onInputFocus(selectedUser)" [(ngModel)]="messageInput" placeholder="Type your message...">
+            <button (click)="sendMessage(messageInput, selectedUser)">Send</button>
+        </div>
+    </div>
+</div>
